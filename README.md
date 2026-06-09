@@ -948,4 +948,5 @@ Al finalizar la práctica:
 
 ---
 
+- Trabajo realizado en grupo... 
 
