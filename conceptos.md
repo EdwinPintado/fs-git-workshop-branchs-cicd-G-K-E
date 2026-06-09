@@ -2,67 +2,13 @@
 
 ## Taller: Git y GitHub — Ramas, Pull Requests y CI/CD
 
-Este taller parte de una base previa: los estudiantes ya conocen Git de forma individual. Ya han trabajado con comandos como `git add`, `git commit`, `git push`, `git pull` y han subido proyectos propios a GitHub.
 
-El objetivo de este segundo taller es avanzar hacia un flujo de trabajo más real, donde varios desarrolladores colaboran sobre un mismo proyecto, trabajan en ramas separadas, revisan cambios mediante Pull Requests, integran código de forma controlada y automatizan validaciones y despliegues usando CI/CD.
-
-Durante la primera parte del taller se explicarán los conceptos principales: ramas, flujo de trabajo colaborativo, Pull Requests, merge, conflictos y CI/CD. Después, los estudiantes trabajarán en equipos de tres personas sobre un proyecto Astro ya preparado. Cada equipo hará un fork del repositorio base, seleccionará una o dos tareas de la tabla del README, creará ramas de trabajo, realizará cambios, abrirá Pull Requests, validará el CI y finalmente integrará los cambios hasta publicar el sitio con GitHub Pages.
+En la primera parte del taller se revisan los conceptos principales: ramas, flujo de trabajo colaborativo, Pull Requests, merge, conflictos y CI/CD: ramas, flujo de trabajo colaborativo, Pull Requests, merge, conflictos y CI/CD. Después, el trabajo se realiza en equipos de tres personas sobre un proyecto Astro ya preparado.sobre un proyecto Astro ya preparado. Cada equipo hará un fork del repositorio base, seleccionará una o dos tareas de la tabla del README, creará ramas de trabajo, realizará cambios, abrirá Pull Requests, validará el CI y finalmente integrará los cambios hasta publicar el sitio con GitHub Pages.
 
 ---
 
-# 1. Objetivo general del workshop
 
-El objetivo es que los estudiantes comprendan y apliquen un flujo de trabajo colaborativo con Git y GitHub, simulando un entorno real de desarrollo.
-
-Al finalizar, deberán poder:
-
-Crear un fork de un repositorio base.
-
-Trabajar en equipo dentro de un mismo fork.
-
-Crear ramas desde una rama de integración.
-
-Realizar cambios sin afectar directamente la rama principal.
-
-Abrir Pull Requests para revisar e integrar código.
-
-Resolver conflictos cuando dos ramas modifican el mismo archivo.
-
-Comprender cuándo se ejecuta un pipeline de CI.
-
-Comprender cuándo se ejecuta un pipeline de CD.
-
-Desplegar automáticamente una aplicación web en GitHub Pages.
-
----
-
-# 2. Contexto inicial para los estudiantes
-
-Hasta ahora han trabajado principalmente de forma individual:
-
-```bash
-git add .
-git commit -m "mensaje"
-git push origin main
-```
-
-Ese flujo funciona cuando una sola persona trabaja sobre su propio repositorio. El problema aparece cuando varias personas editan el mismo proyecto.
-
-En un equipo real no se recomienda que todos hagan `push` directamente a `main`, porque cualquier cambio incorrecto puede romper el proyecto completo. Para evitar eso, se usan ramas, Pull Requests, revisiones y validaciones automáticas.
-
-El taller se basa en esta transición:
-
-```txt
-Trabajo individual:
-main → commit → push
-
-Trabajo colaborativo:
-feature/* → Pull Request → develop → Pull Request → main → despliegue
-```
-
----
-
-# 3. ¿Qué es una rama en Git?
+# A. ¿Qué es una rama en Git?
 
 Una rama es una línea independiente de trabajo dentro del repositorio.
 
@@ -96,7 +42,7 @@ Si algo sale mal en la rama `feature/about-section`, no se daña la versión pri
 
 ---
 
-# 4. ¿Por qué no trabajar directamente en main?
+# B. ¿Por qué no trabajar directamente en main?
 
 La rama `main` representa la versión estable del proyecto.
 
@@ -124,7 +70,7 @@ feature/* = trabajo individual o por tarea
 
 ---
 
-# 5. Ramas principales de un proyecto
+# C. Ramas principales de un proyecto
 
 ## main
 
@@ -144,7 +90,7 @@ No se trabaja directamente sobre `main`.
 
 ---
 
-## develop
+## develop / dev
 
 `develop` es la rama de integración.
 
@@ -213,7 +159,7 @@ feature/* → develop → main
 
 ---
 
-# 6. Flujo general de ramas
+# D. Flujo general de ramas
 
 El flujo principal del taller será:
 
@@ -237,7 +183,7 @@ Cuando se fusiona en `main`, se activa el despliegue automático.
 
 ---
 
-# 7. ¿Qué es un fork?
+# E. ¿Qué es un fork?
 
 Un fork es una copia de un repositorio en otra cuenta de GitHub.
 
@@ -259,7 +205,7 @@ Los demás integrantes no hacen forks individuales. Todos trabajan sobre el mism
 
 ---
 
-# 8. ¿Por qué usamos fork en este workshop?
+## ¿Por qué usamos fork en este workshop?
 
 Usamos fork porque permite que cada equipo tenga su propia copia del proyecto sin modificar el repositorio original.
 
@@ -277,54 +223,7 @@ Se simula un flujo parecido al trabajo con proyectos externos o de código abier
 
 ---
 
-# 9. origin y upstream
-
-Cuando se clona el fork, Git crea un remoto llamado `origin`.
-
-```txt
-origin = fork del equipo
-```
-
-Ejemplo:
-
-```bash
-git remote -v
-```
-
-Resultado esperado:
-
-```txt
-origin  https://github.com/usuario-equipo/fs-git-workshop-branchs-cicd.git
-```
-
-`origin` es donde el equipo hace `push`.
-
-```bash
-git push origin feature/about-section
-```
-
-## upstream
-
-`upstream` es el repositorio original del docente.
-
-```txt
-upstream = repositorio original
-```
-
-Se usa solo si el docente actualiza el repositorio base y el equipo necesita sincronizar esos cambios.
-
-No se hace push a `upstream`.
-
-```txt
-origin   → fork del equipo
-upstream → repositorio original
-```
-
-Para este taller, `upstream` puede manejarse como concepto opcional o avanzado.
-
----
-
-# 10. ¿Qué es un Pull Request?
+# F. ¿Qué es un Pull Request?
 
 Un Pull Request es una solicitud para integrar cambios de una rama hacia otra.
 
@@ -352,7 +251,7 @@ Decidir si el cambio se integra o no.
 
 ---
 
-# 11. ¿Dónde se crea el Pull Request?
+# G. ¿Dónde se crea el Pull Request?
 
 En GitHub, dentro del fork del equipo.
 
@@ -380,7 +279,7 @@ develop del fork → main del fork
 
 ---
 
-# 12. ¿Qué es merge?
+# H. ¿Qué es merge?
 
 Merge significa fusionar una rama con otra.
 
@@ -412,7 +311,7 @@ Esto se hace antes de completar un Pull Request para reducir conflictos.
 
 ---
 
-# 13. Comandos principales para trabajar con ramas
+# I. Comandos principales para trabajar con ramas
 
 ## Ver ramas existentes
 
@@ -456,7 +355,7 @@ git merge develop
 
 ---
 
-# 14. ¿Qué es un conflicto?
+## ¿Qué es un conflicto?
 
 Un conflicto ocurre cuando Git no puede decidir automáticamente qué cambio conservar.
 
@@ -470,6 +369,8 @@ src/components/Header.astro
 
 Git marca el conflicto así:
 
+![alt text](assets/conte-j.png)
+
 ```txt
 <<<<<<< HEAD
 Contenido actual de mi rama
@@ -478,7 +379,7 @@ Contenido que viene desde develop
 >>>>>>> develop
 ```
 
-El estudiante debe editar manualmente el archivo y dejar la versión final correcta.
+Se debe editar manualmente el archivo y dejar la versión final correcta.
 
 Luego:
 
@@ -490,324 +391,58 @@ git push origin feature/header-conflict
 
 ---
 
-# 15. Buenas prácticas de commits
+# J. Flujo práctico del workshop
 
-Un commit debe representar un cambio concreto.
+Antes de trabajar con CI/CD, revisa el flujo completo que se aplicará durante la práctica.
 
-No se recomienda hacer un solo commit gigante al final.
+El objetivo no es solamente modificar una página web. El objetivo es aplicar un flujo colaborativo real usando Git, GitHub, ramas, Pull Requests, validación automática y despliegue.
 
-Ejemplos correctos:
-
-```bash
-git commit -m "feat: actualiza hero del workshop"
-git commit -m "style: mejora tarjetas de flujo git"
-git commit -m "fix: corrige error de compilación"
-git commit -m "docs: actualiza instrucciones de práctica"
-```
-
-Convenciones recomendadas:
-
-```txt
-feat: nueva funcionalidad
-fix: corrección de error
-style: cambios visuales
-docs: documentación
-refactor: reorganización sin cambiar comportamiento
-ci: cambios en workflows
-```
-
----
-
-# 16. Flujo práctico del workshop
-
-Antes de entrar a CI/CD, se debe explicar el flujo concreto que harán los estudiantes.
+Durante el workshop se trabajará con un proyecto Astro ya configurado. Cada equipo tendrá su propio fork del repositorio base y realizará cambios en una o dos secciones del proyecto.
 
 ## Flujo del equipo
 
-Un integrante crea el fork.
+El flujo de trabajo será el siguiente:
 
-Agrega a los otros dos integrantes como colaboradores.
-
-El equipo clona el fork.
-
-Se crea la rama `develop`.
-
-Cada integrante selecciona una tarea del README.
-
-Cada integrante crea una rama `feature/*`.
-
-Cada integrante modifica su sección.
-
-Cada integrante hace commit y push.
-
-Cada integrante abre un Pull Request hacia `develop`.
-
-El equipo revisa los Pull Requests.
-
-El CI valida automáticamente cada Pull Request.
-
-Si el CI pasa, se hace merge hacia `develop`.
-
-Cuando todas las tareas estén integradas, se crea Pull Request de `develop` hacia `main`.
-
-Cuando se fusiona en `main`, se activa el despliegue automático.
-
-El sitio queda publicado en GitHub Pages.
+1. Crear un fork del repositorio base.
+2. Agregar a los integrantes del equipo como colaboradores del fork.
+3. Clonar el fork del equipo.
+4. Crear la rama `develop` dentro del fork.
+5. Seleccionar una o dos tareas de la tabla del README.
+6. Crear una rama `feature/*` para cada tarea.
+7. Modificar únicamente los archivos asignados.
+8. Ejecutar las validaciones locales.
+9. Crear commits claros.
+10. Subir la rama al fork.
+11. Crear un Pull Request hacia `develop`.
+12. Revisar que el CI pase correctamente.
+13. Resolver conflictos si aparecen.
+14. Hacer merge hacia `develop`.
+15. Crear un Pull Request de `develop` hacia `main`.
+16. Hacer merge hacia `main`.
+17. Activar el despliegue automático en GitHub Pages.
 
 ## Flujo resumido
 
 ```txt
-fork → develop → feature/* → commit → push → PR → CI → merge a develop → PR a main → CD → GitHub Pages
+fork → develop → feature/* → commit → push → Pull Request → CI → merge a develop → PR a main → CD → GitHub Pages
 ```
+
+Este flujo permite trabajar de forma ordenada sin modificar directamente la rama principal del proyecto.
 
 ---
 
-# 17. Actividad práctica por equipos
-
-Aunque el README tenga siete tareas, cada equipo de tres personas no debe hacer necesariamente las siete.
-
-Cada equipo puede seleccionar una o dos tareas, según el tiempo y la organización.
-
-Ejemplo:
-
-```txt
-Equipo A:
-- feature/hero-section
-- feature/header-conflict
-
-Equipo B:
-- feature/about-section
-- feature/sponsors-section
-
-Equipo C:
-- feature/cicd-section
-- feature/workshop-section
-```
-
-La idea no es completar todo el sitio, sino practicar correctamente el flujo colaborativo.
-
-Cada tarea debe pasar por:
-
-```txt
-rama → commit → push → Pull Request → CI → merge
-```
-
----
-
-# 18. Tareas posibles del proyecto
-
-## Tarea 1: HeroSection
-
-Rama:
-
-```txt
-feature/hero-section
-```
-
-Archivo:
-
-```txt
-src/sections/HeroSection.astro
-```
-
-Qué hacer:
-
-Actualizar el texto principal del Hero.
-
-Mejorar el título, subtítulo o descripción.
-
-Cambiar el botón o destacar el objetivo del taller.
-
-Resultado esperado:
-
-La sección inicial debe explicar claramente el taller de Git, GitHub, ramas y CI/CD.
-
----
-
-## Tarea 2: AboutSection
-
-Rama:
-
-```txt
-feature/about-section
-```
-
-Archivo:
-
-```txt
-src/sections/AboutSection.astro
-```
-
-Qué hacer:
-
-Actualizar la explicación del workshop.
-
-Agregar tarjetas sobre lo que se aprenderá.
-
-Relacionar el taller con trabajo colaborativo real.
-
-Resultado esperado:
-
-La sección debe explicar por qué se usan ramas, Pull Requests y CI/CD.
-
----
-
-## Tarea 3: GitFlowSection
-
-Rama:
-
-```txt
-feature/gitflow-section
-```
-
-Archivo:
-
-```txt
-src/sections/GitFlowSection.astro
-```
-
-Qué hacer:
-
-Mejorar la explicación visual del flujo de ramas.
-
-Incluir `main`, `develop`, `feature/*`, `fix/*` y `hotfix/*`.
-
-Resultado esperado:
-
-La sección debe mostrar claramente cómo se integran los cambios.
-
----
-
-## Tarea 4: CicdSection
-
-Rama:
-
-```txt
-feature/cicd-section
-```
-
-Archivo:
-
-```txt
-src/sections/CicdSection.astro
-```
-
-Qué hacer:
-
-Agregar explicación de CI/CD.
-
-Explicar qué valida el CI y cuándo ocurre el deploy.
-
-Resultado esperado:
-
-La sección debe diferenciar integración continua y despliegue continuo.
-
----
-
-## Tarea 5: WorkshopSection
-
-Rama:
-
-```txt
-feature/workshop-section
-```
-
-Archivo:
-
-```txt
-src/sections/WorkshopSection.astro
-```
-
-Qué hacer:
-
-Actualizar los pasos del workshop.
-
-Resumir el flujo completo de trabajo.
-
-Resultado esperado:
-
-La sección debe servir como guía rápida de la práctica.
-
----
-
-## Tarea 6: HeaderConflict
-
-Rama:
-
-```txt
-feature/header-conflict
-```
-
-Archivo:
-
-```txt
-src/components/Header.astro
-```
-
-Qué hacer:
-
-Modificar el menú de navegación.
-
-Agregar, renombrar o reordenar enlaces.
-
-Resultado esperado:
-
-Provocar o resolver un conflicto controlado.
-
----
-
-## Tarea 7: SponsorsSection
-
-Rama:
-
-```txt
-feature/sponsors-section
-```
-
-Archivos:
-
-```txt
-src/sections/SponsorsSection.astro
-src/pages/index.astro
-```
-
-Qué hacer:
-
-Activar una sección que ya existe, pero no está importada.
-
-Agregar el import:
-
-```astro
-import SponsorsSection from "../sections/SponsorsSection.astro";
-```
-
-Agregar el componente:
-
-```astro
-<SponsorsSection />
-```
-
-Resultado esperado:
-
-La sección de aliados aparece en la página principal.
-
----
-
-# 19. ¿Qué es CI?
+# K. ¿Qué es CI?
 
 CI significa Integración Continua.
 
-Es un proceso automático que valida el proyecto cada vez que hay cambios importantes.
+Es un proceso automático que valida el proyecto cada vez que se realizan cambios importantes en el repositorio.
 
-En este taller, el CI valida que el proyecto:
+En este workshop, el CI revisa que el proyecto:
 
-Instale dependencias correctamente.
-
-No tenga errores de Astro o TypeScript.
-
-Compile correctamente.
-
-No llegue código roto a `develop` o `main`.
+* Instale dependencias correctamente.
+* No tenga errores de Astro o TypeScript.
+* Compile sin errores.
+* No integre código roto en `develop` o `main`.
 
 ## Idea central
 
@@ -819,13 +454,13 @@ El CI responde esta pregunta:
 
 ---
 
-# 20. ¿Para qué sirve CI?
+## ¿Para qué sirve CI?
 
-Sirve para evitar integrar código roto.
+CI sirve para evitar que se integren cambios que rompen el proyecto.
 
-Antes de que un Pull Request se fusione, GitHub Actions ejecuta comandos automáticos.
+Antes de fusionar un Pull Request, GitHub Actions ejecuta comandos automáticos.
 
-En nuestro caso:
+En este proyecto se ejecutan:
 
 ```bash
 pnpm install --frozen-lockfile
@@ -833,29 +468,29 @@ pnpm check
 pnpm build
 ```
 
-Si esos comandos fallan, el Pull Request no debe integrarse.
+Si alguno de estos comandos falla, el Pull Request no debe integrarse hasta corregir el problema.
 
 ---
 
-# 21. ¿Qué es CD?
+# L. ¿Qué es CD?
 
 CD significa Despliegue Continuo.
 
 Es el proceso automático que publica el proyecto cuando los cambios llegan a una rama específica.
 
-En este taller, el CD publica el sitio en GitHub Pages cuando hay un push a `main`.
+En este workshop, el CD publica el sitio en GitHub Pages cuando hay cambios en `main`.
 
 ## Idea central
 
 El CD responde esta pregunta:
 
 ```txt
-¿Ya llegó una versión estable a producción? Entonces se publica automáticamente.
+¿La versión estable llegó a producción? Entonces se publica automáticamente.
 ```
 
 ---
 
-# 22. Diferencia entre CI y CD
+# M. Diferencia entre CI y CD
 
 CI valida.
 
@@ -866,7 +501,7 @@ CI = revisar que el proyecto compila
 CD = desplegar el proyecto en GitHub Pages
 ```
 
-Ejemplo:
+En este proyecto:
 
 ```txt
 feature/* → CI
@@ -876,13 +511,13 @@ main → CI + CD
 
 ---
 
-# 23. ¿Qué es GitHub Actions?
+# N. ¿Qué es GitHub Actions?
 
 GitHub Actions es la herramienta de automatización de GitHub.
 
-Permite ejecutar tareas automáticamente cuando ocurre un evento.
+Permite ejecutar tareas automáticamente cuando ocurre un evento dentro del repositorio.
 
-Ejemplos de eventos:
+Eventos comunes:
 
 ```txt
 push a una rama
@@ -890,7 +525,7 @@ creación de Pull Request
 merge hacia main
 ```
 
-Las tareas se definen en archivos `.yml` dentro de:
+Las automatizaciones se definen en archivos `.yml` dentro de:
 
 ```txt
 .github/workflows/
@@ -905,7 +540,7 @@ En este proyecto existen dos workflows:
 
 ---
 
-# 24. Explicación general del CI del proyecto
+# O. Explicación general del CI del proyecto
 
 Archivo:
 
@@ -938,15 +573,15 @@ develop
 
 ## ¿Por qué se ejecuta en feature/*?
 
-Porque se quiere validar el trabajo de cada integrante desde su rama.
+Porque cada rama de trabajo necesita validarse antes de integrarse con el resto del proyecto.
 
 ## ¿Por qué se ejecuta en Pull Request?
 
-Porque antes de integrar cambios en `develop` o `main`, se necesita comprobar que el proyecto funciona.
+Porque antes de integrar cambios en `develop` o `main`, se necesita comprobar que el proyecto sigue funcionando correctamente.
 
 ---
 
-# 25. Pasos del CI
+## Pasos del CI
 
 El job principal se llama:
 
@@ -955,7 +590,7 @@ build:
     name: Validar y compilar Astro
 ```
 
-Ejecuta estos pasos:
+Este job ejecuta los siguientes pasos:
 
 ## 1. Descargar repositorio
 
@@ -963,7 +598,7 @@ Ejecuta estos pasos:
 uses: actions/checkout@v4
 ```
 
-GitHub Actions descarga el código del repositorio para poder trabajar con él.
+GitHub Actions descarga el código del repositorio para poder ejecutar los comandos del proyecto.
 
 ## 2. Configurar pnpm
 
@@ -973,7 +608,7 @@ with:
     version: 10
 ```
 
-Instala `pnpm` en el runner.
+Instala `pnpm` en el entorno de ejecución.
 
 ## 3. Configurar Node.js
 
@@ -984,7 +619,7 @@ with:
     cache: pnpm
 ```
 
-Configura Node.js 22 y activa caché para acelerar instalaciones.
+Configura Node.js 22 y activa caché para acelerar la instalación de dependencias.
 
 ## 4. Instalar dependencias
 
@@ -992,7 +627,7 @@ Configura Node.js 22 y activa caché para acelerar instalaciones.
 run: pnpm install --frozen-lockfile
 ```
 
-Instala dependencias respetando exactamente el `pnpm-lock.yaml`.
+Instala dependencias respetando exactamente el archivo `pnpm-lock.yaml`.
 
 ## 5. Validar proyecto
 
@@ -1008,11 +643,11 @@ Valida sintaxis, tipos y estructura del proyecto Astro.
 run: pnpm build
 ```
 
-Genera el sitio estático en `dist`.
+Genera el sitio estático en la carpeta `dist`.
 
 ---
 
-# 26. Explicación general del CD del proyecto
+# P. Explicación general del CD del proyecto
 
 Archivo:
 
@@ -1026,7 +661,7 @@ Nombre:
 name: CD - Deploy GitHub Pages
 ```
 
-Este workflow se ejecuta solo cuando hay push a `main`.
+Este workflow se ejecuta únicamente cuando hay push a `main`.
 
 ```yml
 on:
@@ -1039,7 +674,7 @@ on:
 
 Porque `main` representa producción.
 
-No queremos desplegar ramas incompletas como:
+No se despliegan ramas incompletas como:
 
 ```txt
 feature/about-section
@@ -1047,11 +682,11 @@ develop
 fix/header
 ```
 
-Solo se publica cuando el equipo decidió que el código ya está listo y lo fusionó en `main`.
+Solo se publica cuando el código fue revisado, validado e integrado en `main`.
 
 ---
 
-# 27. Pasos del CD
+## Pasos del CD
 
 El CD tiene dos jobs:
 
@@ -1064,19 +699,14 @@ deploy
 
 Construye el sitio.
 
-Pasos:
+Pasos principales:
 
-Descargar repositorio.
-
-Configurar pnpm.
-
-Configurar Node.js.
-
-Instalar dependencias.
-
-Compilar Astro.
-
-Subir el artefacto de GitHub Pages.
+1. Descargar el repositorio.
+2. Configurar pnpm.
+3. Configurar Node.js.
+4. Instalar dependencias.
+5. Compilar Astro.
+6. Subir el artefacto para GitHub Pages.
 
 El artefacto es la carpeta:
 
@@ -1093,8 +723,6 @@ JS
 assets
 ```
 
----
-
 ## Job 2: deploy
 
 Publica el sitio.
@@ -1103,7 +731,7 @@ Publica el sitio.
 uses: actions/deploy-pages@v4
 ```
 
-Este paso toma el artefacto generado por el job anterior y lo publica en GitHub Pages.
+Este paso toma el artefacto generado en el job anterior y lo publica en GitHub Pages.
 
 Resultado:
 
@@ -1113,9 +741,9 @@ https://usuario.github.io/fs-git-workshop-branchs-cicd/
 
 ---
 
-# 28. Relación entre ramas y CI/CD
+# Q. Relación entre ramas y CI/CD
 
-## Cuando hago push a feature/*
+## Cuando se hace push a feature/*
 
 Ejemplo:
 
@@ -1133,11 +761,11 @@ No se activa CD.
 
 Motivo:
 
-La rama `feature/*` no es producción.
+La rama `feature/*` no representa producción.
 
 ---
 
-## Cuando creo Pull Request hacia develop
+## Cuando se crea Pull Request hacia develop
 
 Ejemplo:
 
@@ -1159,7 +787,7 @@ Se está validando si el cambio puede integrarse a desarrollo.
 
 ---
 
-## Cuando hago merge hacia develop
+## Cuando se hace merge hacia develop
 
 Ejemplo:
 
@@ -1181,7 +809,7 @@ Motivo:
 
 ---
 
-## Cuando creo Pull Request de develop hacia main
+## Cuando se crea Pull Request de develop hacia main
 
 Ejemplo:
 
@@ -1201,7 +829,7 @@ Antes de pasar a producción, se valida el proyecto completo.
 
 ---
 
-## Cuando hago merge hacia main
+## Cuando se hace merge hacia main
 
 Ejemplo:
 
@@ -1221,7 +849,7 @@ Motivo:
 
 ---
 
-# 29. Mapa final de activación
+# R. Mapa final de activación
 
 ```txt
 push a feature/*       → CI
@@ -1235,427 +863,3 @@ push a main            → CI + CD
 
 ---
 
-# 30. Flujo completo del workshop con CI/CD
-
-```txt
-1. Crear fork del repositorio base
-2. Agregar colaboradores
-3. Crear develop
-4. Cada integrante crea feature/*
-5. Cada integrante modifica su sección
-6. Cada integrante hace commit
-7. Cada integrante hace push
-8. Se activa CI en la rama feature/*
-9. Se crea Pull Request hacia develop
-10. Se activa CI en el Pull Request
-11. Se revisa y se hace merge hacia develop
-12. Cuando todas las tareas están listas, se crea PR develop → main
-13. Se activa CI
-14. Se hace merge hacia main
-15. Se activa CD
-16. GitHub Pages publica el sitio
-```
-
----
-
-# 31. Comandos mínimos para la práctica
-
-## Clonar fork
-
-```bash
-git clone <url-del-fork>
-cd fs-git-workshop-branchs-cicd
-```
-
-## Crear develop
-
-Solo lo hace un integrante:
-
-```bash
-git checkout main
-git pull origin main
-git checkout -b develop
-git push origin develop
-```
-
-## Cambiar a develop
-
-```bash
-git checkout develop
-git pull origin develop
-```
-
-## Crear rama feature
-
-```bash
-git checkout -b feature/about-section
-```
-
-## Validar proyecto
-
-```bash
-pnpm install
-pnpm check
-pnpm build
-```
-
-## Guardar cambios
-
-```bash
-git status
-git add .
-git commit -m "feat: actualiza sección about"
-```
-
-## Subir rama
-
-```bash
-git push origin feature/about-section
-```
-
-## Actualizar mi rama con develop
-
-```bash
-git checkout develop
-git pull origin develop
-
-git checkout feature/about-section
-git merge develop
-```
-
-## Resolver conflicto
-
-```bash
-git add .
-git commit -m "fix: resuelve conflicto con develop"
-git push origin feature/about-section
-```
-
----
-
-# 32. Errores comunes que deben evitar
-
-Trabajar directamente en `main`.
-
-Trabajar directamente en `develop` sin autorización.
-
-Crear Pull Request hacia el repositorio original en lugar del fork.
-
-Hacer push a `upstream`.
-
-No ejecutar `pnpm build` antes del Pull Request.
-
-Borrar código de otro compañero para resolver un conflicto.
-
-No revisar hacia qué rama apunta el Pull Request.
-
-Subir cambios sin mensaje claro.
-
-Modificar archivos no asignados.
-
----
-
-# 33. Cierre conceptual para antes de iniciar la práctica
-
-Antes de iniciar el workshop práctico, debe quedar claro este resumen:
-
-Una rama permite trabajar sin afectar la versión estable.
-
-`main` representa producción.
-
-`develop` representa integración.
-
-`feature/*` representa trabajo individual o por tarea.
-
-Un Pull Request permite revisar antes de integrar.
-
-Un merge fusiona cambios entre ramas.
-
-Un conflicto ocurre cuando dos ramas modifican la misma parte de un archivo.
-
-CI valida automáticamente el proyecto.
-
-CD publica automáticamente el proyecto.
-
-En este taller, el CI se ejecuta en ramas y Pull Requests.
-
-En este taller, el CD se ejecuta únicamente cuando los cambios llegan a `main`.
-
----
-
-# 34. Distribución sugerida de las 2 horas
-
-## Bloque 1: Introducción y contexto — 10 minutos
-
-Explicar el objetivo del taller.
-
-Recordar el flujo individual que ya conocen.
-
-Presentar el problema del trabajo colaborativo.
-
-## Bloque 2: Ramas y flujo colaborativo — 25 minutos
-
-Explicar `main`, `develop`, `feature/*`, `fix/*`, `hotfix/*`.
-
-Explicar fork, origin y Pull Request.
-
-Mostrar flujo `feature → develop → main`.
-
-## Bloque 3: Pull Request, merge y conflictos — 20 minutos
-
-Explicar PR.
-
-Explicar merge.
-
-Mostrar comandos.
-
-Mostrar ejemplo de conflicto.
-
-## Bloque 4: CI/CD — 25 minutos
-
-Explicar CI.
-
-Explicar CD.
-
-Explicar GitHub Actions.
-
-Analizar `ci.yml`.
-
-Analizar `deploy-pages.yml`.
-
-Explicar qué se activa en cada rama.
-
-## Bloque 5: Práctica por equipos — 35 minutos
-
-Crear fork.
-
-Crear `develop`.
-
-Seleccionar tarea.
-
-Crear rama.
-
-Modificar sección.
-
-Commit y push.
-
-Crear Pull Request.
-
-Revisar CI.
-
-## Bloque 6: Cierre — 5 minutos
-
-Revisar resultados.
-
-Identificar errores comunes.
-
-Ver despliegue final en GitHub Pages.
-
----
-
-# 35. Estructura sugerida para diapositivas
-
-## Diapositiva 1: Título
-
-Git y GitHub: Ramas, Pull Requests y CI/CD
-
-Subtítulo:
-
-Trabajo colaborativo y despliegue continuo con Astro, GitHub Actions y GitHub Pages.
-
----
-
-## Diapositiva 2: Punto de partida
-
-Ya conocen:
-
-```txt
-git add
-git commit
-git push
-git pull
-```
-
-Ahora aprenderán:
-
-```txt
-ramas
-Pull Requests
-merge
-conflictos
-CI/CD
-deploy automático
-```
-
----
-
-## Diapositiva 3: Problema
-
-Trabajar todos sobre `main` es riesgoso.
-
-```txt
-main rota = proyecto roto
-main incompleta = producción incompleta
-main sin revisión = errores no detectados
-```
-
----
-
-## Diapositiva 4: Solución
-
-Usar ramas.
-
-```txt
-main      → producción
-develop   → integración
-feature/* → trabajo por tarea
-```
-
----
-
-## Diapositiva 5: Flujo
-
-```txt
-feature/* → Pull Request → develop → Pull Request → main → GitHub Pages
-```
-
----
-
-## Diapositiva 6: Fork
-
-Cada equipo tendrá su propio fork.
-
-```txt
-Repositorio base → fork del equipo → ramas → Pull Requests → deploy
-```
-
----
-
-## Diapositiva 7: Pull Request
-
-Un PR permite revisar antes de integrar.
-
-Debe responder:
-
-```txt
-¿Qué se cambió?
-¿Por qué se cambió?
-¿Compila?
-¿El CI pasó?
-```
-
----
-
-## Diapositiva 8: Merge
-
-Merge fusiona cambios entre ramas.
-
-```txt
-feature/about-section → develop
-develop → main
-```
-
----
-
-## Diapositiva 9: Conflictos
-
-Git no siempre puede decidir automáticamente.
-
-```txt
-<<<<<<< HEAD
-mi cambio
-=======
-cambio de develop
->>>>>>> develop
-```
-
----
-
-## Diapositiva 10: CI
-
-CI valida automáticamente.
-
-```txt
-pnpm install
-pnpm check
-pnpm build
-```
-
----
-
-## Diapositiva 11: CD
-
-CD despliega automáticamente.
-
-```txt
-main → build → dist → GitHub Pages
-```
-
----
-
-## Diapositiva 12: Nuestro CI
-
-Se ejecuta en:
-
-```txt
-main
-develop
-feature/**
-fix/**
-hotfix/**
-Pull Requests a main y develop
-```
-
----
-
-## Diapositiva 13: Nuestro CD
-
-Se ejecuta solo en:
-
-```txt
-main
-```
-
-Porque `main` representa producción.
-
----
-
-## Diapositiva 14: Práctica
-
-Cada equipo:
-
-```txt
-fork
-develop
-feature/*
-commit
-push
-Pull Request
-CI
-merge
-deploy
-```
-
----
-
-## Diapositiva 15: Resultado esperado
-
-Al final:
-
-```txt
-fork configurado
-ramas creadas
-Pull Requests realizados
-CI aprobado
-sitio publicado
-```
-
----
-
-# 36. Mensaje final para estudiantes
-
-El objetivo no es solo modificar una página web. El objetivo es practicar una forma profesional de colaborar en proyectos de software.
-
-El código no debe llegar directamente a producción. Primero se trabaja en una rama, luego se revisa con Pull Request, después se valida con CI, se integra a `develop`, y finalmente se publica desde `main` mediante CD.
-
-Ese flujo permite trabajar en equipo con menos errores, mayor control y una integración más segura.
