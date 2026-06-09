@@ -1,0 +1,34 @@
+---
+// TechCard.astro — Tarjeta técnica con efecto neón
+
+interface Props {
+    title: string;
+    description: string;
+    tag?: string;
+}
+
+const { title, description, tag } = Astro.props;
+---
+
+<div class="tech-card">
+    {tag && <span class="card-tag">{tag}</span>}
+    <h3>{title}</h3>
+    <p>{description}</p>
+</div>
+
+<style>
+    .card-tag {
+        display: inline-block;
+        margin-bottom: 14px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: rgba(0, 102, 255, 0.15);
+        border: 1px solid rgba(0, 200, 255, 0.25);
+        color: var(--color-primary-light);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        position: relative;
+    }
+</style>

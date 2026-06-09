@@ -1,0 +1,279 @@
+---
+// WorkshopSection.astro — Fases y pasos del workshop
+import SectionHeading from "../components/SectionHeading.astro";
+---
+
+<section class="section" id="workshop">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Flujo de trabajo"
+            title="Pasos del"
+            highlight="Workshop"
+            description="El taller sigue un flujo de trabajo real de desarrollo colaborativo. Cada equipo realiza los mismos pasos que usaría en un proyecto profesional con Git y GitHub."
+        />
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num-badge" aria-hidden="true">01</div>
+                <div class="step-body">
+                    <h3 class="step-title">Clonar el repositorio</h3>
+                    <p class="step-desc">
+                        Cada estudiante clona el repositorio del taller en su
+                        equipo local.
+                    </p>
+                    <code class="step-cmd">git clone &lt;url-del-repo&gt;</code>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-num-badge" aria-hidden="true">02</div>
+                <div class="step-body">
+                    <h3 class="step-title">Crear una rama</h3>
+                    <p class="step-desc">
+                        Desde <code>develop</code>, cada equipo crea su rama <code
+                            >feature/*</code
+                        >.
+                    </p>
+                    <code class="step-cmd"
+                        >git checkout -b feature/nombre-tarea</code
+                    >
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-num-badge" aria-hidden="true">03</div>
+                <div class="step-body">
+                    <h3 class="step-title">Modificar el componente</h3>
+                    <p class="step-desc">
+                        Cada equipo trabaja en la sección asignada del proyecto
+                        Astro.
+                    </p>
+                    <code class="step-cmd">src/sections/MiSeccion.astro</code>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-num-badge" aria-hidden="true">04</div>
+                <div class="step-body">
+                    <h3 class="step-title">Hacer commit</h3>
+                    <p class="step-desc">
+                        Guardar los cambios con un mensaje descriptivo y claro.
+                    </p>
+                    <code class="step-cmd"
+                        >git commit -m "feat: describe el cambio"</code
+                    >
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-num-badge" aria-hidden="true">05</div>
+                <div class="step-body">
+                    <h3 class="step-title">Subir la rama</h3>
+                    <p class="step-desc">
+                        Publicar la rama en GitHub para que sea visible para
+                        todos.
+                    </p>
+                    <code class="step-cmd"
+                        >git push origin feature/nombre-tarea</code
+                    >
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-num-badge" aria-hidden="true">06</div>
+                <div class="step-body">
+                    <h3 class="step-title">Crear Pull Request</h3>
+                    <p class="step-desc">
+                        Abrir un PR en GitHub hacia la rama <code>develop</code> con
+                        descripción clara.
+                    </p>
+                    <code class="step-cmd">GitHub → Pull Requests → New PR</code
+                    >
+                </div>
+            </div>
+
+            <div class="step-card step-highlight">
+                <div class="step-num-badge badge-yellow" aria-hidden="true">
+                    07
+                </div>
+                <div class="step-body">
+                    <h3 class="step-title">Resolver conflictos</h3>
+                    <p class="step-desc">
+                        Si hay conflictos entre ramas, el equipo los resuelve
+                        sin eliminar el trabajo ajeno.
+                    </p>
+                    <code class="step-cmd"
+                        >git merge develop → resolver → commit</code
+                    >
+                </div>
+            </div>
+
+            <div class="step-card step-highlight">
+                <div class="step-num-badge badge-yellow" aria-hidden="true">
+                    08
+                </div>
+                <div class="step-body">
+                    <h3 class="step-title">Hacer merge</h3>
+                    <p class="step-desc">
+                        Cuando el CI pasa y el PR es aprobado, se mergea hacia <code
+                            >develop</code
+                        >.
+                    </p>
+                    <code class="step-cmd">GitHub → Merge Pull Request</code>
+                </div>
+            </div>
+
+            <div class="step-card step-final">
+                <div class="step-num-badge badge-green" aria-hidden="true">
+                    09
+                </div>
+                <div class="step-body">
+                    <h3 class="step-title">Revisar CI/CD</h3>
+                    <p class="step-desc">
+                        Verificar que el pipeline de GitHub Actions ejecutó
+                        correctamente. Si llegó a <code>main</code>, el sitio se
+                        despliega automáticamente.
+                    </p>
+                    <code class="step-cmd"
+                        >GitHub → Actions → Ver workflows</code
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px;
+    }
+
+    .step-card {
+        display: flex;
+        gap: 18px;
+        padding: 24px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.94),
+            rgba(2, 6, 23, 0.96)
+        );
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+        transition:
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .step-card:hover {
+        border-color: var(--color-border);
+        transform: translateY(-2px);
+    }
+
+    .step-highlight {
+        border-color: rgba(250, 204, 21, 0.2);
+        background: linear-gradient(
+            180deg,
+            rgba(250, 204, 21, 0.04),
+            rgba(2, 6, 23, 0.97)
+        );
+    }
+
+    .step-final {
+        grid-column: 1 / -1;
+        border-color: rgba(74, 222, 128, 0.25);
+        background: linear-gradient(
+            135deg,
+            rgba(74, 222, 128, 0.05),
+            rgba(0, 102, 255, 0.04),
+            rgba(2, 6, 23, 0.97)
+        );
+    }
+
+    .step-num-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: rgba(0, 200, 255, 0.08);
+        border: 1px solid var(--color-border);
+        color: var(--color-primary-light);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        flex-shrink: 0;
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    .badge-yellow {
+        background: rgba(250, 204, 21, 0.1);
+        border-color: rgba(250, 204, 21, 0.3);
+        color: var(--color-accent);
+    }
+
+    .badge-green {
+        background: rgba(74, 222, 128, 0.1);
+        border-color: rgba(74, 222, 128, 0.3);
+        color: #4ade80;
+    }
+
+    .step-body {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+    }
+
+    .step-title {
+        font-size: 0.95rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .step-desc {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+        line-height: 1.55;
+        margin: 0;
+    }
+
+    .step-desc code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+    }
+
+    .step-cmd {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.78rem;
+        color: #86efac;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid var(--color-border-soft);
+        margin-top: 4px;
+        display: block;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    @media (max-width: 700px) {
+        .steps-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .step-final {
+            grid-column: 1;
+        }
+    }
+</style>

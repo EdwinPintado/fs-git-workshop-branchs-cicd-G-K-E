@@ -1,0 +1,127 @@
+---
+// AboutSection.astro — Descripción general del taller
+import SectionHeading from "../components/SectionHeading.astro";
+import TechCard from "../components/TechCard.astro";
+---
+
+<section class="section" id="evento">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Sobre el taller"
+            title="¿De qué trata"
+            highlight="este workshop?"
+            description="Un taller práctico diseñado para que los estudiantes aprendan a colaborar en equipo usando Git, GitHub y automatización con CI/CD, sobre un proyecto real construido con Astro."
+        />
+
+        <div class="about-grid">
+            <TechCard
+                title="Git Colaborativo"
+                description="Aprende a trabajar en equipo con Git: ramas, merges, resolución de conflictos y flujo de trabajo estructurado para equipos de desarrollo."
+                tag="Control de versiones"
+            />
+            <TechCard
+                title="GitHub como plataforma"
+                description="Gestiona el código en GitHub: Pull Requests, revisión de código, protección de ramas y estrategias de integración para proyectos académicos y profesionales."
+                tag="Colaboración"
+            />
+            <TechCard
+                title="Automatización con CI/CD"
+                description="Configura pipelines con GitHub Actions para validar automáticamente cada cambio y desplegar el sitio en GitHub Pages sin intervención manual."
+                tag="Automatización"
+            />
+        </div>
+
+        <div class="about-highlight">
+            <div class="about-highlight-inner">
+                <div class="highlight-block">
+                    <p class="highlight-number glow-blue">7+</p>
+                    <p class="highlight-label">Equipos de trabajo</p>
+                </div>
+                <div class="highlight-divider" aria-hidden="true"></div>
+                <div class="highlight-block">
+                    <p class="highlight-number glow-yellow">8</p>
+                    <p class="highlight-label">Secciones del proyecto</p>
+                </div>
+                <div class="highlight-divider" aria-hidden="true"></div>
+                <div class="highlight-block">
+                    <p class="highlight-number glow-blue">∞</p>
+                    <p class="highlight-label">Flujo CI/CD automático</p>
+                </div>
+                <div class="highlight-divider" aria-hidden="true"></div>
+                <div class="highlight-block">
+                    <p class="highlight-number glow-yellow">100%</p>
+                    <p class="highlight-label">Práctica real</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 56px;
+    }
+
+    .about-highlight {
+        padding: 36px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(
+            135deg,
+            rgba(0, 102, 255, 0.05),
+            rgba(124, 58, 237, 0.05)
+        );
+        box-shadow: 0 0 40px rgba(0, 102, 255, 0.08);
+    }
+
+    .about-highlight-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .highlight-block {
+        text-align: center;
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .highlight-number {
+        font-size: clamp(2.4rem, 5vw, 3.6rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .highlight-label {
+        font-size: 0.82rem;
+        color: var(--color-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .highlight-divider {
+        width: 1px;
+        height: 60px;
+        background: var(--color-border-soft);
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+        .highlight-divider {
+            display: none;
+        }
+
+        .about-highlight-inner {
+            gap: 32px;
+        }
+    }
+</style>

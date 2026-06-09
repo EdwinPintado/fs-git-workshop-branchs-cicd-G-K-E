@@ -1,0 +1,424 @@
+/* =====================================================
+   GLOBAL CSS — Taller de Git y GitHub: CI/CD Workshop
+   Paleta DevOps · Neón · Oscuro
+   ===================================================== */
+
+:root {
+    --color-bg: #020617;
+    --color-bg-soft: #07111f;
+    --color-surface: #0b1220;
+    --color-surface-alt: #111827;
+
+    --color-primary: #0066ff;
+    --color-primary-light: #00c8ff;
+    --color-secondary: #7c3aed;
+    --color-accent: #facc15;
+
+    --color-text: #f8fafc;
+    --color-text-soft: #cbd5e1;
+    --color-muted: #94a3b8;
+
+    --color-border: rgba(0, 200, 255, 0.35);
+    --color-border-soft: rgba(148, 163, 184, 0.18);
+
+    --shadow-neon-blue: 0 0 18px rgba(0, 102, 255, 0.65);
+    --shadow-neon-cyan: 0 0 24px rgba(0, 200, 255, 0.45);
+    --shadow-neon-purple: 0 0 24px rgba(124, 58, 237, 0.45);
+
+    --container-width: 1180px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+}
+
+/* ─── Reset ─────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Arial Narrow", "Roboto Condensed", Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(0, 102, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 90% 32%, rgba(124, 58, 237, 0.2), transparent 26%),
+        linear-gradient(135deg, #020617 0%, #030712 45%, #07111f 100%);
+    color: var(--color-text);
+    overflow-x: hidden;
+}
+
+/* Patrón tipo circuito — capa superior */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(0, 102, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 102, 255, 0.08) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 75%);
+    z-index: -2;
+}
+
+/* Patrón tipo circuito — capa inferior */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent 0 92%, rgba(0, 200, 255, 0.07) 92% 93%, transparent 93%),
+        linear-gradient(180deg, transparent 0 88%, rgba(124, 58, 237, 0.08) 88% 89%, transparent 89%);
+    background-size: 180px 180px;
+    z-index: -1;
+}
+
+/* ─── Tipografía base ────────────────────────────────── */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.1;
+    color: var(--color-text);
+}
+
+p {
+    line-height: 1.7;
+    color: var(--color-text-soft);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+/* ─── Layout ─────────────────────────────────────────── */
+
+.section {
+    position: relative;
+    padding: 92px 20px;
+}
+
+.section:nth-child(even) {
+    background: linear-gradient(180deg, transparent, rgba(7, 17, 31, 0.6), transparent);
+}
+
+.container {
+    width: min(100% - 40px, var(--container-width));
+    margin: 0 auto;
+}
+
+/* ─── Encabezados de sección ─────────────────────────── */
+
+.section-title {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    color: var(--color-text);
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+}
+
+.section-title strong,
+.text-accent {
+    color: var(--color-accent);
+}
+
+.section-description {
+    max-width: 780px;
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
+/* ─── Etiqueta neón ──────────────────────────────────── */
+
+.neon-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin-bottom: 26px;
+    padding: 10px 20px;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: rgba(0, 102, 255, 0.08);
+    box-shadow: var(--shadow-neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* ─── Línea neón ─────────────────────────────────────── */
+
+.neon-line {
+    width: 90px;
+    height: 5px;
+    margin: 28px 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-primary-light), var(--color-primary));
+    box-shadow: var(--shadow-neon-blue);
+}
+
+/* ─── Tarjeta técnica ────────────────────────────────── */
+
+.tech-card {
+    position: relative;
+    padding: 28px;
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.96)),
+        var(--color-surface);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tech-card:hover {
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-neon-cyan), 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.tech-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, rgba(0, 200, 255, 0.28), transparent 30%),
+        linear-gradient(315deg, rgba(124, 58, 237, 0.22), transparent 28%);
+    opacity: 0.55;
+}
+
+.tech-card h3,
+.tech-card p {
+    position: relative;
+}
+
+.tech-card h3 {
+    margin: 0 0 10px;
+    color: var(--color-primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tech-card p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+}
+
+/* ─── Botones ────────────────────────────────────────── */
+
+.button,
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 14px 28px;
+    border: 1px solid rgba(250, 204, 21, 0.7);
+    border-radius: 12px;
+    background: var(--color-accent);
+    color: #0f172a;
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: 0 0 24px rgba(250, 204, 21, 0.35);
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.button:hover,
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 34px rgba(250, 204, 21, 0.6);
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 13px 26px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--color-primary-light);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: var(--shadow-neon-cyan);
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.btn-outline:hover {
+    transform: translateY(-2px);
+    background: rgba(0, 200, 255, 0.08);
+}
+
+/* ─── Utilidades glow ────────────────────────────────── */
+
+.glow-blue {
+    color: var(--color-primary-light);
+    text-shadow: 0 0 18px rgba(0, 200, 255, 0.7);
+}
+
+.glow-yellow {
+    color: var(--color-accent);
+    text-shadow: 0 0 18px rgba(250, 204, 21, 0.55);
+}
+
+.glow-purple {
+    color: #a78bfa;
+    text-shadow: 0 0 18px rgba(124, 58, 237, 0.65);
+}
+
+/* ─── Badge / tag ────────────────────────────────────── */
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(0, 102, 255, 0.15);
+    border: 1px solid rgba(0, 200, 255, 0.25);
+    color: var(--color-primary-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ─── Bloque de código visual ────────────────────────── */
+
+.code-block {
+    padding: 20px 24px;
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    background: rgba(2, 6, 23, 0.92);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.88rem;
+    color: var(--color-primary-light);
+    line-height: 1.8;
+    overflow-x: auto;
+}
+
+.code-block .prompt {
+    color: var(--color-muted);
+    user-select: none;
+}
+
+.code-block .cmd {
+    color: #86efac;
+}
+
+.code-block .branch {
+    color: var(--color-accent);
+}
+
+.code-block .comment {
+    color: #475569;
+}
+
+/* ─── Grid reutilizable ──────────────────────────────── */
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .section {
+        padding: 72px 20px;
+    }
+
+    .container {
+        width: min(100% - 28px, var(--container-width));
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 56px 16px;
+    }
+
+    .neon-label {
+        font-size: 0.78rem;
+        padding: 8px 14px;
+    }
+
+    .button,
+    .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}

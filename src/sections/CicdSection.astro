@@ -1,0 +1,437 @@
+---
+// CicdSection.astro — Explicación de CI/CD con GitHub Actions
+import SectionHeading from "../components/SectionHeading.astro";
+---
+
+<section class="section" id="cicd">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Integración y despliegue continuo"
+            title="CI/CD con"
+            highlight="GitHub Actions"
+            description="Cada cambio que se sube al repositorio desencadena procesos automáticos. La integración continua valida el código; el despliegue continuo publica el sitio sin intervención manual."
+        />
+
+        <!-- Diagrama CI/CD -->
+        <div class="pipeline-diagram" aria-label="Diagrama del pipeline CI/CD">
+            <!-- CI -->
+            <div class="pipeline-section">
+                <div class="pipeline-header ci-header">
+                    <span class="pipeline-icon" aria-hidden="true">✓</span>
+                    <div>
+                        <p class="pipeline-type">CI · Integración Continua</p>
+                        <p class="pipeline-trigger">
+                            Se ejecuta en: push a ramas · Pull Requests
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pipeline-steps">
+                    <div class="pipeline-step">
+                        <span class="step-num" aria-hidden="true">1</span>
+                        <div class="step-content">
+                            <p class="step-title">Descargar repositorio</p>
+                            <code class="step-cmd">actions/checkout@v4</code>
+                        </div>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="pipeline-step">
+                        <span class="step-num" aria-hidden="true">2</span>
+                        <div class="step-content">
+                            <p class="step-title">Instalar dependencias</p>
+                            <code class="step-cmd"
+                                >pnpm install --frozen-lockfile</code
+                            >
+                        </div>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="pipeline-step">
+                        <span class="step-num" aria-hidden="true">3</span>
+                        <div class="step-content">
+                            <p class="step-title">Validar proyecto</p>
+                            <code class="step-cmd">pnpm check</code>
+                        </div>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="pipeline-step">
+                        <span class="step-num step-last" aria-hidden="true"
+                            >4</span
+                        >
+                        <div class="step-content">
+                            <p class="step-title">Compilar proyecto</p>
+                            <code class="step-cmd">pnpm build</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divisor -->
+            <div class="pipeline-divider" aria-hidden="true">
+                <span class="divider-line"></span>
+                <span class="divider-badge">main</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <!-- CD -->
+            <div class="pipeline-section">
+                <div class="pipeline-header cd-header">
+                    <span class="pipeline-icon" aria-hidden="true">⬆</span>
+                    <div>
+                        <p class="pipeline-type">CD · Despliegue Continuo</p>
+                        <p class="pipeline-trigger">
+                            Se ejecuta en: push a main solamente
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pipeline-steps">
+                    <div class="pipeline-step">
+                        <span class="step-num" aria-hidden="true">1</span>
+                        <div class="step-content">
+                            <p class="step-title">Build del sitio</p>
+                            <code class="step-cmd">pnpm build → ./dist</code>
+                        </div>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="pipeline-step">
+                        <span class="step-num" aria-hidden="true">2</span>
+                        <div class="step-content">
+                            <p class="step-title">Subir artefacto</p>
+                            <code class="step-cmd"
+                                >upload-pages-artifact@v3</code
+                            >
+                        </div>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="pipeline-step step-deploy">
+                        <span class="step-num step-last" aria-hidden="true"
+                            >3</span
+                        >
+                        <div class="step-content">
+                            <p class="step-title">Publicar en GitHub Pages</p>
+                            <code class="step-cmd">deploy-pages@v4</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas de conceptos -->
+        <div class="cicd-concepts">
+            <div class="concept-card">
+                <div class="concept-icon ci-color" aria-hidden="true">✓</div>
+                <h3 class="concept-title">Integración Continua</h3>
+                <p class="concept-desc">
+                    Cada vez que un desarrollador sube código o abre un Pull
+                    Request, GitHub Actions ejecuta automáticamente la
+                    validación y el build. Si algo falla, el PR no puede
+                    mergearse.
+                </p>
+                <ul class="concept-list">
+                    <li>Ramas: main, develop, feature/*, fix/*, hotfix/*</li>
+                    <li>Pull Requests hacia main y develop</li>
+                    <li>Falla el CI → no se puede mergear</li>
+                </ul>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-icon cd-color" aria-hidden="true">⬆</div>
+                <h3 class="concept-title">Despliegue Continuo</h3>
+                <p class="concept-desc">
+                    Cuando los cambios llegan a <code>main</code>, el pipeline
+                    de CD construye el sitio y lo publica automáticamente en
+                    GitHub Pages. Cero intervención manual.
+                </p>
+                <ul class="concept-list">
+                    <li>Solo se activa en push a main</li>
+                    <li>Build automático con Astro</li>
+                    <li>Publicación en GitHub Pages</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ─── Diagrama de pipeline ───────── */
+    .pipeline-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 48px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: rgba(11, 18, 32, 0.95);
+    }
+
+    .pipeline-section {
+        padding: 32px 36px;
+    }
+
+    .pipeline-section:first-child {
+        border-bottom: 1px solid var(--color-border-soft);
+    }
+
+    .pipeline-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .pipeline-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: 900;
+        flex-shrink: 0;
+    }
+
+    .ci-header .pipeline-icon {
+        background: rgba(74, 222, 128, 0.12);
+        border: 1px solid rgba(74, 222, 128, 0.3);
+        color: #4ade80;
+        box-shadow: 0 0 14px rgba(74, 222, 128, 0.2);
+    }
+
+    .cd-header .pipeline-icon {
+        background: rgba(0, 102, 255, 0.12);
+        border: 1px solid rgba(0, 102, 255, 0.3);
+        color: var(--color-primary-light);
+        box-shadow: var(--shadow-neon-cyan);
+    }
+
+    .pipeline-type {
+        font-size: 0.95rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-text);
+        margin-bottom: 3px;
+    }
+
+    .pipeline-trigger {
+        font-size: 0.78rem;
+        color: var(--color-muted);
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* Pasos del pipeline */
+    .pipeline-steps {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        flex-wrap: wrap;
+    }
+
+    .pipeline-step {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: 10px;
+        background: rgba(2, 6, 23, 0.7);
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .step-deploy {
+        border-color: rgba(0, 200, 255, 0.3);
+        background: rgba(0, 102, 255, 0.06);
+    }
+
+    .step-num {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(0, 200, 255, 0.1);
+        border: 1px solid var(--color-border);
+        color: var(--color-primary-light);
+        font-size: 0.78rem;
+        font-weight: 900;
+        flex-shrink: 0;
+    }
+
+    .step-last {
+        background: rgba(250, 204, 21, 0.1);
+        border-color: rgba(250, 204, 21, 0.3);
+        color: var(--color-accent);
+    }
+
+    .step-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .step-title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--color-text-soft);
+        margin: 0;
+    }
+
+    .step-cmd {
+        font-size: 0.72rem;
+        color: var(--color-primary-light);
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    .step-connector {
+        width: 32px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-border), transparent);
+        flex-shrink: 0;
+    }
+
+    /* Divisor main */
+    .pipeline-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 36px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .divider-line {
+        flex: 1;
+        height: 1px;
+        background: var(--color-border-soft);
+    }
+
+    .divider-badge {
+        padding: 6px 16px;
+        border: 1px solid rgba(74, 222, 128, 0.35);
+        border-radius: 999px;
+        background: rgba(74, 222, 128, 0.08);
+        color: #4ade80;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    /* ─── Tarjetas de conceptos ──────── */
+    .cicd-concepts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .concept-card {
+        padding: 32px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.95),
+            rgba(2, 6, 23, 0.97)
+        );
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        transition: border-color 0.2s ease;
+    }
+
+    .concept-card:hover {
+        border-color: var(--color-border);
+    }
+
+    .concept-icon {
+        font-size: 1.6rem;
+        margin-bottom: 16px;
+        font-weight: 900;
+    }
+
+    .ci-color {
+        color: #4ade80;
+        text-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
+    }
+    .cd-color {
+        color: var(--color-primary-light);
+        text-shadow: 0 0 12px rgba(0, 200, 255, 0.5);
+    }
+
+    .concept-title {
+        font-size: 1.15rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--color-text);
+        margin-bottom: 12px;
+    }
+
+    .concept-desc {
+        font-size: 0.9rem;
+        color: var(--color-text-soft);
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .concept-desc code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+    }
+
+    .concept-list {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .concept-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 0.83rem;
+        color: var(--color-muted);
+        padding-left: 14px;
+        position: relative;
+    }
+
+    .concept-list li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--color-primary-light);
+        font-weight: 700;
+    }
+
+    /* ─── Responsive ────────────────── */
+    @media (max-width: 900px) {
+        .pipeline-steps {
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .step-connector {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .cicd-concepts {
+            grid-template-columns: 1fr;
+        }
+
+        .pipeline-section {
+            padding: 24px 20px;
+        }
+    }
+</style>

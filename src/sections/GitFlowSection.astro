@@ -1,0 +1,450 @@
+---
+// GitFlowSection.astro — Explicación del flujo de ramas Git
+import SectionHeading from "../components/SectionHeading.astro";
+---
+
+<section class="section" id="gitflow">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Estrategia de ramas"
+            title="Git"
+            highlight="Flow"
+            description="El proyecto usa una estrategia de ramas clara que separa el trabajo en progreso del código en producción. Cada equipo trabaja en su propia rama y envía cambios mediante Pull Requests."
+        />
+
+        <!-- Diagrama visual del flujo -->
+        <div class="flow-diagram" aria-label="Diagrama del flujo de ramas Git">
+            <div class="flow-branches">
+                <!-- main -->
+                <div class="flow-branch branch-main">
+                    <div class="branch-header">
+                        <span class="branch-dot dot-main" aria-hidden="true"
+                        ></span>
+                        <code class="branch-name">main</code>
+                        <span class="branch-badge badge-prod">PRODUCCIÓN</span>
+                    </div>
+                    <p class="branch-desc">
+                        Rama de producción. Solo recibe cambios mediante Pull
+                        Request desde <code>develop</code>. Cada push activa el
+                        deploy automático a GitHub Pages.
+                    </p>
+                    <div class="branch-rule">
+                        <span class="rule-icon" aria-hidden="true">⚡</span>
+                        Activa el pipeline CD → GitHub Pages
+                    </div>
+                </div>
+
+                <!-- Arrow main <- develop -->
+                <div class="flow-arrow" aria-hidden="true">
+                    <span class="arrow-line"></span>
+                    <span class="arrow-label">PR aprobado</span>
+                    <span class="arrow-head">↑</span>
+                </div>
+
+                <!-- develop -->
+                <div class="flow-branch branch-develop">
+                    <div class="branch-header">
+                        <span class="branch-dot dot-develop" aria-hidden="true"
+                        ></span>
+                        <code class="branch-name">develop</code>
+                        <span class="branch-badge badge-int">INTEGRACIÓN</span>
+                    </div>
+                    <p class="branch-desc">
+                        Rama de integración. Recibe el trabajo de todos los
+                        equipos. Solo se mergea a <code>main</code> cuando el CI pasa
+                        y el docente aprueba el Pull Request.
+                    </p>
+                    <div class="branch-rule">
+                        <span class="rule-icon" aria-hidden="true">✓</span>
+                        Activa el pipeline CI en cada PR
+                    </div>
+                </div>
+
+                <!-- Arrow develop <- feature/* -->
+                <div class="flow-arrow" aria-hidden="true">
+                    <span class="arrow-line"></span>
+                    <span class="arrow-label">PR de equipo</span>
+                    <span class="arrow-head">↑</span>
+                </div>
+
+                <!-- feature/* -->
+                <div class="flow-branch branch-feature">
+                    <div class="branch-header">
+                        <span class="branch-dot dot-feature" aria-hidden="true"
+                        ></span>
+                        <code class="branch-name">feature/*</code>
+                        <span class="branch-badge badge-work">TRABAJO</span>
+                    </div>
+                    <p class="branch-desc">
+                        Ramas de trabajo individual o por equipo. Se crean desde
+                        <code>develop</code>, se trabaja de forma independiente
+                        y se envían como Pull Request hacia <code>develop</code
+                        >.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ramas especiales -->
+            <div class="special-branches">
+                <div class="special-branch">
+                    <div class="special-header">
+                        <span class="branch-dot dot-fix" aria-hidden="true"
+                        ></span>
+                        <code>fix/*</code>
+                    </div>
+                    <p>
+                        Corrección de errores detectados en desarrollo. Se crea
+                        desde <code>develop</code> y se mergea de vuelta.
+                    </p>
+                </div>
+
+                <div class="special-branch special-hotfix">
+                    <div class="special-header">
+                        <span class="branch-dot dot-hotfix" aria-hidden="true"
+                        ></span>
+                        <code>hotfix/*</code>
+                    </div>
+                    <p>
+                        Corrección urgente directamente desde <code>main</code>.
+                        Se mergea tanto a <code>main</code> como a <code
+                            >develop</code
+                        >.
+                    </p>
+                    <div class="hotfix-arrows" aria-hidden="true">
+                        <span class="hotfix-arrow">→ main</span>
+                        <span class="hotfix-arrow">→ develop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comandos clave -->
+        <div class="commands-block">
+            <p class="commands-title">
+                <span aria-hidden="true">▶</span> Comandos para crear y trabajar con
+                ramas
+            </p>
+            <div class="code-block">
+                <p>
+                    <span class="comment"
+                        ># 1. Situarse en develop actualizado</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git checkout</span>
+                    <span class="branch">develop</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git pull</span> origin <span
+                        class="branch">develop</span>
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    <span class="comment"># 2. Crear tu rama de trabajo</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git checkout</span> -b <span
+                        class="branch">feature/mi-tarea</span>
+                </p>
+                <p>&nbsp;</p>
+                <p><span class="comment"># 3. Guardar cambios</span></p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git add</span> .
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git commit</span> -m <span class="branch"
+                        >"feat: describe el cambio"</span>
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    <span class="comment"
+                        ># 4. Subir la rama y crear Pull Request</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git push</span> origin <span
+                        class="branch">feature/mi-tarea</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ─── Diagrama de flujo ──────────── */
+    .flow-diagram {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 32px;
+        margin-bottom: 48px;
+    }
+
+    .flow-branches {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+    }
+
+    /* Ramas principales */
+    .flow-branch {
+        padding: 24px 28px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border-soft);
+        background: rgba(11, 18, 32, 0.9);
+        position: relative;
+        transition: border-color 0.2s ease;
+    }
+
+    .flow-branch:hover {
+        border-color: var(--color-border);
+    }
+
+    .branch-main {
+        border-left: 3px solid #4ade80;
+    }
+    .branch-develop {
+        border-left: 3px solid var(--color-primary-light);
+    }
+    .branch-feature {
+        border-left: 3px solid var(--color-accent);
+    }
+
+    .branch-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .branch-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .dot-main {
+        background: #4ade80;
+        box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+    }
+    .dot-develop {
+        background: var(--color-primary-light);
+        box-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
+    }
+    .dot-feature {
+        background: var(--color-accent);
+        box-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
+    }
+    .dot-fix {
+        background: #fb923c;
+        box-shadow: 0 0 8px rgba(251, 146, 60, 0.5);
+    }
+    .dot-hotfix {
+        background: #f87171;
+        box-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+    }
+
+    .branch-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    .branch-badge {
+        margin-left: auto;
+        padding: 3px 9px;
+        border-radius: 5px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .badge-prod {
+        background: rgba(74, 222, 128, 0.12);
+        border: 1px solid rgba(74, 222, 128, 0.3);
+        color: #4ade80;
+    }
+    .badge-int {
+        background: rgba(0, 200, 255, 0.1);
+        border: 1px solid rgba(0, 200, 255, 0.25);
+        color: var(--color-primary-light);
+    }
+    .badge-work {
+        background: rgba(250, 204, 21, 0.1);
+        border: 1px solid rgba(250, 204, 21, 0.3);
+        color: var(--color-accent);
+    }
+
+    .branch-desc {
+        font-size: 0.88rem;
+        color: var(--color-muted);
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+
+    .branch-desc code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+    }
+
+    .branch-rule {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        color: var(--color-muted);
+        font-weight: 600;
+        padding: 6px 10px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid var(--color-border-soft);
+    }
+
+    .rule-icon {
+        font-size: 0.9rem;
+    }
+
+    /* Flechas entre ramas */
+    .flow-arrow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 0;
+        gap: 2px;
+    }
+
+    .arrow-line {
+        display: block;
+        width: 2px;
+        height: 20px;
+        background: linear-gradient(to top, var(--color-border), transparent);
+    }
+
+    .arrow-label {
+        font-size: 0.7rem;
+        color: var(--color-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+    }
+
+    .arrow-head {
+        color: var(--color-primary-light);
+        font-size: 1.1rem;
+        line-height: 1;
+    }
+
+    /* Ramas especiales */
+    .special-branches {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .special-branch {
+        padding: 22px 24px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: rgba(11, 18, 32, 0.9);
+    }
+
+    .special-hotfix {
+        border-left: 3px solid #f87171;
+    }
+
+    .special-branch:first-child {
+        border-left: 3px solid #fb923c;
+    }
+
+    .special-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .special-header code {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    .special-branch p {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .special-branch p code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+    }
+
+    .hotfix-arrows {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .hotfix-arrow {
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: rgba(248, 113, 113, 0.1);
+        border: 1px solid rgba(248, 113, 113, 0.25);
+        color: #f87171;
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: "Courier New", Courier, monospace;
+    }
+
+    /* Bloque de comandos */
+    .commands-block {
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+
+    .commands-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: rgba(0, 102, 255, 0.08);
+        border-bottom: 1px solid var(--color-border-soft);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-primary-light);
+        margin: 0;
+    }
+
+    .commands-block .code-block {
+        border: none;
+        border-radius: 0;
+    }
+
+    /* ─── Responsive ────────────────── */
+    @media (max-width: 900px) {
+        .flow-diagram {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

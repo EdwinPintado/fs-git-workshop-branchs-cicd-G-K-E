@@ -1,0 +1,88 @@
+---
+// EventInfoCard.astro — Tarjeta de información del evento
+
+interface Props {
+    label: string;
+    value: string;
+    description?: string;
+}
+
+const { label, value, description } = Astro.props;
+---
+
+<div class="event-card">
+    <p class="event-card-label">{label}</p>
+    <p class="event-card-value">{value}</p>
+    {description && <p class="event-card-description">{description}</p>}
+</div>
+
+<style>
+    .event-card {
+        position: relative;
+        padding: 24px 28px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        background: linear-gradient(
+            135deg,
+            rgba(0, 102, 255, 0.08) 0%,
+            rgba(2, 6, 23, 0.96) 60%
+        );
+        box-shadow:
+            var(--shadow-neon-cyan),
+            0 8px 32px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .event-card:hover {
+        transform: translateY(-3px);
+        box-shadow:
+            var(--shadow-neon-blue),
+            0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .event-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--color-primary-light),
+            transparent
+        );
+        opacity: 0.8;
+    }
+
+    .event-card-label {
+        margin-bottom: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--color-primary-light);
+        text-shadow: 0 0 10px rgba(0, 200, 255, 0.4);
+    }
+
+    .event-card-value {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: var(--color-text);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1.2;
+        margin-bottom: 6px;
+    }
+
+    .event-card-description {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+</style>

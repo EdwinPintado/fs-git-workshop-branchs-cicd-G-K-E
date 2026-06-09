@@ -1,0 +1,196 @@
+---
+// EventDetailsSection.astro — Detalles del evento
+import SectionHeading from "../components/SectionHeading.astro";
+import EventInfoCard from "../components/EventInfoCard.astro";
+---
+
+<section class="section" id="detalles">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Información del evento"
+            title="Detalles del"
+            highlight="Taller"
+            description="Todo lo que necesitas saber para asistir al Taller de Git y GitHub. Confirma tu asistencia con tu docente."
+        />
+
+        <div class="details-layout">
+            <div class="cards-block">
+                <EventInfoCard
+                    label="Fecha"
+                    value="Martes 9 de junio 2026"
+                    description="Semana del estudiante · UPS Cuenca"
+                />
+                <EventInfoCard
+                    label="Hora"
+                    value="11h00"
+                    description="Ingreso puntual. Taller con actividad práctica desde el inicio."
+                />
+                <EventInfoCard
+                    label="Lugar"
+                    value="Aula 1 Juan Bottasso"
+                    description="Campus universitario UPS · Cuenca"
+                />
+                <EventInfoCard
+                    label="Animador"
+                    value="Mgtr. Pablo Torres"
+                    description="Docente de Programación y Plataformas Web"
+                />
+            </div>
+
+            <div class="details-info">
+                <div class="info-block">
+                    <p class="info-label">Tema central</p>
+                    <p class="info-value">Git, GitHub y despliegue continuo</p>
+                </div>
+
+                <div class="info-block">
+                    <p class="info-label">Asignatura</p>
+                    <p class="info-value">Programación y Plataformas Web</p>
+                </div>
+
+                <div class="info-block">
+                    <p class="info-label">Modalidad</p>
+                    <p class="info-value">
+                        Presencial · Trabajo en equipo · 100% práctica
+                    </p>
+                </div>
+
+                <div class="topics-block">
+                    <p class="info-label">Temas del taller</p>
+                    <ul class="topics-list">
+                        <li>
+                            <span class="topic-dot" aria-hidden="true"></span> Git
+                            colaborativo y flujo de ramas
+                        </li>
+                        <li>
+                            <span class="topic-dot" aria-hidden="true"></span> Pull
+                            Requests y revisión de código
+                        </li>
+                        <li>
+                            <span class="topic-dot" aria-hidden="true"></span> Resolución
+                            de conflictos
+                        </li>
+                        <li>
+                            <span class="topic-dot" aria-hidden="true"></span> GitHub
+                            Actions — CI/CD
+                        </li>
+                        <li>
+                            <span class="topic-dot" aria-hidden="true"></span> Despliegue
+                            automático a GitHub Pages
+                        </li>
+                        <li>
+                            <span class="topic-dot" aria-hidden="true"></span> Proyecto
+                            real con Astro
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="#practica" class="btn-primary">
+                    <span aria-hidden="true">→</span> Ver actividades por equipo
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .details-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+    }
+
+    .cards-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    /* ─── Bloque de info ─────────────── */
+    .details-info {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .info-block {
+        padding: 20px 24px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: rgba(11, 18, 32, 0.9);
+        transition: border-color 0.2s ease;
+    }
+
+    .info-block:hover {
+        border-color: var(--color-border);
+    }
+
+    .info-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--color-primary-light);
+        margin-bottom: 6px;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    /* ─── Lista de temas ─────────────── */
+    .topics-block {
+        padding: 20px 24px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: rgba(11, 18, 32, 0.9);
+    }
+
+    .topics-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .topics-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.88rem;
+        color: var(--color-text-soft);
+        font-weight: 500;
+    }
+
+    .topic-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-primary-light);
+        box-shadow: 0 0 6px rgba(0, 200, 255, 0.5);
+        flex-shrink: 0;
+    }
+
+    /* ─── Responsive ────────────────── */
+    @media (max-width: 1000px) {
+        .details-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .cards-block {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .cards-block {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

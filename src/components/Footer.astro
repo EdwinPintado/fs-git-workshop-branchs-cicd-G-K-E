@@ -1,0 +1,218 @@
+---
+// Footer.astro — Pie de página institucional con estética DevOps
+---
+
+<footer class="site-footer">
+    <div class="footer-inner container">
+        <div class="footer-brand">
+            <span class="footer-logo">⬡ Git &amp; GitHub</span>
+            <p class="footer-tagline">
+                Taller de Flujos de trabajo y despliegue continuo
+            </p>
+            <p class="footer-institution">
+                Universidad Politécnica Salesiana · Facultad de Sistemas
+            </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Navegación del pie de página">
+            <p class="footer-nav-title">Secciones</p>
+            <ul class="footer-nav-list">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#evento">Sobre el taller</a></li>
+                <li><a href="#gitflow">Git Flow</a></li>
+                <li><a href="#cicd">CI/CD</a></li>
+                <li><a href="#practica">Práctica</a></li>
+                <li><a href="#detalles">Detalles del evento</a></li>
+            </ul>
+        </nav>
+
+        <div class="footer-tech">
+            <p class="footer-nav-title">Tecnologías</p>
+            <ul class="footer-tech-list">
+                <li><span class="tech-dot"></span> Astro</li>
+                <li><span class="tech-dot"></span> GitHub Actions</li>
+                <li><span class="tech-dot"></span> GitHub Pages</li>
+                <li><span class="tech-dot"></span> pnpm</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p class="footer-copy">
+                &copy; 2026 · <strong>Programación y Plataformas Web</strong> · UPS
+                · Construido con Astro y ❤️ para aprender Git
+            </p>
+            <p class="footer-build">
+                <span class="badge-ci">✓ CI</span>
+                <span class="badge-cd">⬆ CD</span>
+                Desplegado en GitHub Pages
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        margin-top: 40px;
+        border-top: 1px solid rgba(0, 200, 255, 0.18);
+        background: linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.95));
+    }
+
+    .footer-inner {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr;
+        gap: 48px;
+        padding: 64px 20px;
+    }
+
+    /* ─── Marca ─────────────────────── */
+    .footer-logo {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-primary-light);
+        text-shadow: 0 0 14px rgba(0, 200, 255, 0.5);
+        margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+        color: var(--color-text-soft);
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .footer-institution {
+        color: var(--color-muted);
+        font-size: 0.85rem;
+    }
+
+    /* ─── Navegación ────────────────── */
+    .footer-nav-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-accent);
+        margin-bottom: 16px;
+    }
+
+    .footer-nav-list,
+    .footer-tech-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        list-style: none;
+    }
+
+    .footer-nav-list a {
+        color: var(--color-muted);
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+    }
+
+    .footer-nav-list a:hover {
+        color: var(--color-primary-light);
+    }
+
+    /* ─── Tecnologías ───────────────── */
+    .footer-tech-list {
+        color: var(--color-muted);
+        font-size: 0.9rem;
+    }
+
+    .footer-tech-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .tech-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-primary-light);
+        box-shadow: 0 0 6px rgba(0, 200, 255, 0.5);
+        flex-shrink: 0;
+    }
+
+    /* ─── Línea inferior ────────────── */
+    .footer-bottom {
+        border-top: 1px solid var(--color-border-soft);
+        padding: 20px 0;
+    }
+
+    .footer-bottom-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding-inline: 20px;
+    }
+
+    .footer-copy {
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .footer-copy strong {
+        color: var(--color-text-soft);
+    }
+
+    .footer-build {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .badge-ci {
+        padding: 3px 9px;
+        border-radius: 5px;
+        background: rgba(0, 200, 100, 0.12);
+        border: 1px solid rgba(0, 200, 100, 0.3);
+        color: #4ade80;
+        font-weight: 700;
+        font-size: 0.75rem;
+    }
+
+    .badge-cd {
+        padding: 3px 9px;
+        border-radius: 5px;
+        background: rgba(0, 102, 255, 0.12);
+        border: 1px solid rgba(0, 102, 255, 0.35);
+        color: var(--color-primary-light);
+        font-weight: 700;
+        font-size: 0.75rem;
+    }
+
+    /* ─── Responsive ────────────────── */
+    @media (max-width: 900px) {
+        .footer-inner {
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+        }
+
+        .footer-brand {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .footer-inner {
+            grid-template-columns: 1fr;
+            gap: 28px;
+            padding: 40px 20px;
+        }
+
+        .footer-bottom-inner {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>

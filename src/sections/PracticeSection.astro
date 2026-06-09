@@ -1,0 +1,503 @@
+---
+// PracticeSection.astro — Tareas por equipo para el workshop
+import SectionHeading from "../components/SectionHeading.astro";
+---
+
+<section class="section" id="practica">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Trabajo en equipo"
+            title="Actividades por"
+            highlight="Equipo"
+            description="Cada equipo tiene asignada una tarea específica. El objetivo es practicar el flujo completo: rama → cambios → commit → push → Pull Request → CI → merge."
+        />
+
+        <div class="practice-alert" role="note">
+            <span class="alert-icon" aria-hidden="true">⚡</span>
+            <p>
+                <strong>Regla fundamental:</strong> Nadie trabaja directamente en
+                <code>main</code> ni en <code>develop</code>. Cada equipo crea
+                su propia rama <code>feature/*</code> y envía un Pull Request.
+            </p>
+        </div>
+
+        <div class="teams-grid">
+            <article class="team-card">
+                <div class="team-header">
+                    <span class="team-label" aria-label="Equipo 1">E1</span>
+                    <div>
+                        <p class="team-name">Equipo 1</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/hero-section
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">Modificar HeroSection</h3>
+                <p class="team-desc">
+                    Personalizar la sección principal: actualizar el texto de
+                    bienvenida, cambiar colores del hero o ajustar el contenido
+                    del visual lateral.
+                </p>
+                <code class="team-file">src/sections/HeroSection.astro</code>
+            </article>
+
+            <article class="team-card">
+                <div class="team-header">
+                    <span class="team-label" aria-label="Equipo 2">E2</span>
+                    <div>
+                        <p class="team-name">Equipo 2</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/about-section
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">Modificar AboutSection</h3>
+                <p class="team-desc">
+                    Actualizar las tarjetas de descripción del taller. Cambiar
+                    textos, agregar una cuarta tarjeta o personalizar las
+                    estadísticas del bloque inferior.
+                </p>
+                <code class="team-file">src/sections/AboutSection.astro</code>
+            </article>
+
+            <article class="team-card">
+                <div class="team-header">
+                    <span class="team-label" aria-label="Equipo 3">E3</span>
+                    <div>
+                        <p class="team-name">Equipo 3</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/gitflow-section
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">Modificar GitFlowSection</h3>
+                <p class="team-desc">
+                    Actualizar la sección de flujo de ramas: agregar una nueva
+                    rama al diagrama, mejorar la descripción de algún tipo de
+                    rama o agregar ejemplos adicionales.
+                </p>
+                <code class="team-file">src/sections/GitFlowSection.astro</code>
+            </article>
+
+            <article class="team-card">
+                <div class="team-header">
+                    <span class="team-label" aria-label="Equipo 4">E4</span>
+                    <div>
+                        <p class="team-name">Equipo 4</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/cicd-section
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">Modificar CicdSection</h3>
+                <p class="team-desc">
+                    Actualizar la sección de CI/CD: agregar un paso adicional al
+                    diagrama, mejorar las tarjetas de conceptos o personalizar
+                    la descripción del pipeline.
+                </p>
+                <code class="team-file">src/sections/CicdSection.astro</code>
+            </article>
+
+            <article class="team-card">
+                <div class="team-header">
+                    <span class="team-label" aria-label="Equipo 5">E5</span>
+                    <div>
+                        <p class="team-name">Equipo 5</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/workshop-section
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">Modificar WorkshopSection</h3>
+                <p class="team-desc">
+                    Actualizar los pasos del workshop: mejorar descripciones,
+                    agregar comandos alternativos o personalizar el diseño de
+                    las tarjetas de pasos.
+                </p>
+                <code class="team-file">src/sections/WorkshopSection.astro</code
+                >
+            </article>
+
+            <article class="team-card team-conflict">
+                <div class="team-header">
+                    <span class="team-label label-yellow" aria-label="Equipo 6"
+                        >E6</span
+                    >
+                    <div>
+                        <p class="team-name">Equipo 6</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/header-conflict
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">
+                    Modificar Header — Práctica de conflictos
+                </h3>
+                <p class="team-desc">
+                    Modificar el componente Header de forma coordinada con otro
+                    equipo para generar un conflicto controlado. Luego aprender
+                    a resolverlo correctamente durante el merge.
+                </p>
+                <code class="team-file">src/components/Header.astro</code>
+                <span
+                    class="conflict-badge"
+                    aria-label="Genera conflicto intencional"
+                    >⚡ Genera conflicto intencional</span
+                >
+            </article>
+
+            <article class="team-card team-special">
+                <div class="team-header">
+                    <span class="team-label label-purple" aria-label="Equipo 7"
+                        >E7</span
+                    >
+                    <div>
+                        <p class="team-name">Equipo 7</p>
+                        <p class="team-branch">
+                            <span aria-hidden="true">⎇</span> feature/sponsors-section
+                        </p>
+                    </div>
+                </div>
+                <h3 class="team-task">Activar SponsorsSection</h3>
+                <p class="team-desc">
+                    Esta es la tarea más completa: activar la sección de
+                    sponsors que ya existe pero no está importada en <code
+                        >index.astro</code
+                    >. El equipo debe importarla y agregarla a la página
+                    principal.
+                </p>
+                <code class="team-file">src/sections/SponsorsSection.astro</code
+                >
+                <div class="special-steps">
+                    <p class="special-steps-title">Pasos:</p>
+                    <ol class="special-steps-list">
+                        <li>Abre <code>src/pages/index.astro</code></li>
+                        <li>
+                            Agrega el import de <code>SponsorsSection</code>
+                        </li>
+                        <li>
+                            Añade <code>&lt;SponsorsSection /&gt;</code> antes del
+                            <code>&lt;Footer /&gt;</code>
+                        </li>
+                        <li>
+                            Haz commit y abre un PR hacia <code>develop</code>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+        </div>
+
+        <!-- Instrucciones Git generales -->
+        <div class="practice-commands">
+            <p class="commands-title">
+                <span aria-hidden="true">▶</span> Flujo de comandos para todos los
+                equipos
+            </p>
+            <div class="code-block">
+                <p>
+                    <span class="comment"
+                        ># Partiendo desde develop actualizado</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git checkout</span>
+                    <span class="branch">develop</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git pull</span> origin <span
+                        class="branch">develop</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git checkout</span> -b <span
+                        class="branch">feature/nombre-de-la-tarea</span>
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    <span class="comment"
+                        ># Hacer los cambios en el archivo asignado</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git status</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git add</span> .
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git commit</span> -m <span class="branch"
+                        >"feat: describe el cambio aquí"</span>
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    <span class="comment"
+                        ># Subir y crear Pull Request hacia develop</span>
+                </p>
+                <p>
+                    <span class="prompt">$</span>
+                    <span class="cmd">git push</span> origin <span
+                        class="branch">feature/nombre-de-la-tarea</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .practice-alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 24px;
+        border: 1px solid rgba(250, 204, 21, 0.35);
+        border-radius: var(--radius-md);
+        background: rgba(250, 204, 21, 0.06);
+        margin-bottom: 40px;
+    }
+
+    .alert-icon {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .practice-alert p {
+        font-size: 0.9rem;
+        color: var(--color-text-soft);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .practice-alert strong {
+        color: var(--color-accent);
+    }
+
+    .practice-alert code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+
+    /* ─── Grid de equipos ───────────── */
+    .teams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .team-card {
+        padding: 24px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.94),
+            rgba(2, 6, 23, 0.97)
+        );
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: border-color 0.2s ease;
+    }
+
+    .team-card:hover {
+        border-color: var(--color-border);
+    }
+
+    .team-conflict {
+        border-color: rgba(250, 204, 21, 0.2);
+    }
+
+    .team-special {
+        border-color: rgba(124, 58, 237, 0.3);
+        background: linear-gradient(
+            180deg,
+            rgba(124, 58, 237, 0.06),
+            rgba(2, 6, 23, 0.97)
+        );
+    }
+
+    .team-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .team-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(0, 102, 255, 0.12);
+        border: 1px solid var(--color-border);
+        color: var(--color-primary-light);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        flex-shrink: 0;
+    }
+
+    .label-yellow {
+        background: rgba(250, 204, 21, 0.1);
+        border-color: rgba(250, 204, 21, 0.3);
+        color: var(--color-accent);
+    }
+
+    .label-purple {
+        background: rgba(124, 58, 237, 0.12);
+        border-color: rgba(124, 58, 237, 0.35);
+        color: #a78bfa;
+    }
+
+    .team-name {
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-text-soft);
+        margin: 0;
+    }
+
+    .team-branch {
+        font-size: 0.72rem;
+        color: var(--color-muted);
+        font-family: "Courier New", Courier, monospace;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .team-task {
+        font-size: 0.95rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .team-desc {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+    }
+
+    .team-desc code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+    }
+
+    .team-file {
+        display: block;
+        padding: 6px 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--color-border-soft);
+        border-radius: 6px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.78rem;
+        color: #86efac;
+    }
+
+    .conflict-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: rgba(250, 204, 21, 0.1);
+        border: 1px solid rgba(250, 204, 21, 0.3);
+        color: var(--color-accent);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .special-steps {
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid var(--color-border-soft);
+        border-radius: 8px;
+    }
+
+    .special-steps-title {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #a78bfa;
+        margin-bottom: 8px;
+    }
+
+    .special-steps-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding-left: 16px;
+        list-style: decimal;
+        list-style-position: inside;
+    }
+
+    .special-steps-list li {
+        font-size: 0.8rem;
+        color: var(--color-muted);
+        line-height: 1.5;
+    }
+
+    .special-steps-list code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+
+    /* ─── Comandos ──────────────────── */
+    .practice-commands {
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+
+    .commands-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: rgba(0, 102, 255, 0.08);
+        border-bottom: 1px solid var(--color-border-soft);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-primary-light);
+        margin: 0;
+    }
+
+    .practice-commands .code-block {
+        border: none;
+        border-radius: 0;
+    }
+
+    @media (max-width: 700px) {
+        .teams-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

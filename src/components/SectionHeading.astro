@@ -1,0 +1,49 @@
+---
+// SectionHeading.astro — Encabezado reutilizable de sección
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    highlight?: string;
+    description?: string;
+}
+
+const { eyebrow, title, highlight, description } = Astro.props;
+---
+
+<div class="section-heading">
+    {
+        eyebrow && (
+            <p class="neon-label">
+                <span class="dot" aria-hidden="true">
+                    ◈
+                </span>{" "}
+                {eyebrow}
+            </p>
+        )
+    }
+    <h2 class="section-title">
+        {title}
+        {
+            highlight && (
+                <>
+                    {" "}
+                    <strong>{highlight}</strong>
+                </>
+            )
+        }
+    </h2>
+    <div class="neon-line" aria-hidden="true"></div>
+    {description && <p class="section-description">{description}</p>}
+</div>
+
+<style>
+    .section-heading {
+        margin-bottom: 56px;
+    }
+
+    .dot {
+        color: var(--color-primary-light);
+        font-size: 0.75rem;
+    }
+</style>

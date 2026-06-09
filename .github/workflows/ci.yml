@@ -1,0 +1,43 @@
+name: CI - Validación del proyecto
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+            - "feature/**"
+            - "fix/**"
+            - "hotfix/**"
+    pull_request:
+        branches:
+            - main
+            - develop
+
+jobs:
+    build:
+        name: Validar y compilar Astro
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Descargar repositorio
+              uses: actions/checkout@v4
+
+            - name: Configurar pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10
+
+            - name: Configurar Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: pnpm
+
+            - name: Instalar dependencias
+              run: pnpm install --frozen-lockfile
+
+            - name: Validar proyecto
+              run: pnpm check
+
+            - name: Compilar proyecto
+              run: pnpm build

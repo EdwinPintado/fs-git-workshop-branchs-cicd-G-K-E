@@ -1,0 +1,190 @@
+---
+// SponsorsSection.astro — Aliados del workshop
+// Esta sección existe pero no está importada en index.astro todavía.
+// Será activada por el Equipo 7 como práctica de Pull Requests.
+import SectionHeading from "../components/SectionHeading.astro";
+---
+
+<!--
+  TODO PARA PRÁCTICA:
+  Esta sección fue creada pero no está importada en index.astro.
+  Un equipo deberá crear una rama feature/sponsors-section,
+  importarla en la página principal y abrir un Pull Request hacia develop.
+-->
+<section class="section" id="sponsors">
+    <div class="container">
+        <SectionHeading
+            eyebrow="Apoyo institucional"
+            title="Aliados del"
+            highlight="Workshop"
+            description="Esta sección está preparada para una práctica posterior. El Equipo 7 deberá activarla desde una rama feature/sponsors-section y enviar un Pull Request hacia develop."
+        />
+
+        <div class="practice-note" role="note">
+            <span class="note-icon" aria-hidden="true">📋</span>
+            <p>
+                <strong>Equipo 7 — Tarea:</strong> Esta sección ya existe en el proyecto,
+                pero no está importada en <code>index.astro</code>. Tu misión es
+                importarla y agregarla a la página principal mediante un Pull
+                Request.
+            </p>
+        </div>
+
+        <div class="sponsors-grid">
+            <div class="sponsor-card">
+                <div class="sponsor-logo" aria-hidden="true">🐧</div>
+                <h3 class="sponsor-name">Software Libre</h3>
+                <p class="sponsor-desc">
+                    Comunidad de software de código abierto y tecnologías libres
+                    dentro de la universidad.
+                </p>
+                <span class="sponsor-badge">Comunidad</span>
+            </div>
+
+            <div class="sponsor-card sponsor-featured">
+                <div class="sponsor-logo" aria-hidden="true">⚡</div>
+                <h3 class="sponsor-name">IEEE Capítulo Computación</h3>
+                <p class="sponsor-desc">
+                    Capítulo estudiantil del IEEE enfocado en computación,
+                    inteligencia artificial y tecnología.
+                </p>
+                <span class="sponsor-badge badge-featured">Capítulo IEEE</span>
+            </div>
+
+            <div class="sponsor-card">
+                <div class="sponsor-logo" aria-hidden="true">🌐</div>
+                <h3 class="sponsor-name">Programación y Plataformas Web</h3>
+                <p class="sponsor-desc">
+                    Asignatura de la carrera de Sistemas de Información de la
+                    Universidad Politécnica Salesiana.
+                </p>
+                <span class="sponsor-badge">Asignatura</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .practice-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 24px;
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        border-radius: var(--radius-md);
+        background: rgba(124, 58, 237, 0.06);
+        margin-bottom: 48px;
+    }
+
+    .note-icon {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .practice-note p {
+        font-size: 0.9rem;
+        color: var(--color-text-soft);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .practice-note strong {
+        color: #a78bfa;
+    }
+
+    .practice-note code {
+        font-family: "Courier New", Courier, monospace;
+        color: var(--color-primary-light);
+        background: rgba(0, 200, 255, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+
+    /* ─── Grid de sponsors ───────────── */
+    .sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    .sponsor-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+        padding: 36px 28px;
+        border: 1px solid var(--color-border-soft);
+        border-radius: var(--radius-md);
+        background: linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.95),
+            rgba(2, 6, 23, 0.97)
+        );
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+        transition:
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .sponsor-card:hover {
+        border-color: var(--color-border);
+        transform: translateY(-3px);
+    }
+
+    .sponsor-featured {
+        border-color: rgba(124, 58, 237, 0.35);
+        box-shadow:
+            var(--shadow-neon-purple),
+            0 10px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .sponsor-logo {
+        font-size: 2.5rem;
+        line-height: 1;
+    }
+
+    .sponsor-name {
+        font-size: 1rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .sponsor-desc {
+        font-size: 0.86rem;
+        color: var(--color-muted);
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+    }
+
+    .sponsor-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: rgba(0, 102, 255, 0.12);
+        border: 1px solid rgba(0, 200, 255, 0.25);
+        color: var(--color-primary-light);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .badge-featured {
+        background: rgba(124, 58, 237, 0.12);
+        border-color: rgba(124, 58, 237, 0.35);
+        color: #a78bfa;
+    }
+
+    @media (max-width: 600px) {
+        .sponsors-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -1,17 +1,27 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import HeroSection from "../sections/HeroSection.astro";
+import AboutSection from "../sections/AboutSection.astro";
+import GitFlowSection from "../sections/GitFlowSection.astro";
+import CicdSection from "../sections/CicdSection.astro";
+import WorkshopSection from "../sections/WorkshopSection.astro";
+import PracticeSection from "../sections/PracticeSection.astro";
+import EventDetailsSection from "../sections/EventDetailsSection.astro";
+// SponsorsSection NO importada aún — ver tarea del Equipo 7 en PracticeSection
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Taller de Git y GitHub | CI/CD">
+	<Header />
+	<main>
+		<HeroSection />
+		<AboutSection />
+		<GitFlowSection />
+		<CicdSection />
+		<WorkshopSection />
+		<PracticeSection />
+		<EventDetailsSection />
+	</main>
+	<Footer />
+</MainLayout>
